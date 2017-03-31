@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="ca.edumedia.smyt0058.first" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>GiftR</name>
+    <description>
+        A sample Apache Cordova application that responds to the deviceready event.
+    </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Apache Cordova Team
+    </author>
+    <content src="index.html" />
+    <preference name="SplashScreen" value="screen"/>
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <splash density="port-ldpi" src="res/screens/screen-ldpi-portrait.png"/>
+        <splash density="port-mdpi" src="res/screens/screen-mdpi-portrait.png"/>
+        <splash density="port-hdpi" src="res/screens/screen-hdpi-portrait.png"/>
+        <splash density="port-xhdpi" src="res/screens/screen-xhdpi-portrait.png"/>
+        <splash density="land-ldpi" src="res/screens/screen-ldpi-landscape.png"/>
+        <splash density="land-mdpi" src="res/screens/screen-mdpi-landscape.png"/>
+        <splash density="land-hdpi" src="res/screens/screen-hdpi-landscape.png"/>
+        <splash density="land-xhdpi" src="res/screens/screen-xhdpi-landscape.png"/>
+        
+        <icon density="lpdi" src="res/icons/icon-36-ldpi.png"/>
+        <icon density="mpdi" src="res/icons/icon-48-mdpi.png"/>
+        <icon density="hpdi" src="res/icons/icon-72-hdpi.png"/>
+        <icon density="xhpdi" src="res/icons/icon-96-xhdpi.png"/>
+        <icon density="xxhpdi" src="res/icons/icon-144-xxhdpi.png"/>
+        <icon density="xxxhpdi" src="res/icons/icon-192-xxxhdpi.png"/>
+        
+    
+    </platform>
+    
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+</widget>
