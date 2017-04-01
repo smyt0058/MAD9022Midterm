@@ -20,7 +20,7 @@
     
     <platform name="android">
         <allow-intent href="market:*" />
-        <splash density="port-ldpi" src="res/screens/screen-ldpi-portrait.png"/>
+        <splash density="port-ldpi" src="/res/screens/screen-ldpi-portrait.png"/>
         <splash density="port-mdpi" src="res/screens/screen-mdpi-portrait.png"/>
         <splash density="port-hdpi" src="res/screens/screen-hdpi-portrait.png"/>
         <splash density="port-xhdpi" src="res/screens/screen-xhdpi-portrait.png"/>
@@ -29,12 +29,12 @@
         <splash density="land-hdpi" src="res/screens/screen-hdpi-landscape.png"/>
         <splash density="land-xhdpi" src="res/screens/screen-xhdpi-landscape.png"/>
         
-        <icon density="lpdi" src="res/icons/icon-36-ldpi.png"/>
-        <icon density="mpdi" src="res/icons/icon-48-mdpi.png"/>
-        <icon density="hpdi" src="res/icons/icon-72-hdpi.png"/>
-        <icon density="xhpdi" src="res/icons/icon-96-xhdpi.png"/>
-        <icon density="xxhpdi" src="res/icons/icon-144-xxhdpi.png"/>
-        <icon density="xxxhpdi" src="res/icons/icon-192-xxxhdpi.png"/>
+        <icon density="ldpi" src="res/icons/icon-36-ldpi.png"/>
+        <icon density="mdpi" src="res/icons/icon-48-mdpi.png"/>
+        <icon density="hdpi" src="res/icons/icon-72-hdpi.png"/>
+        <icon density="xhdpi" src="res/icons/icon-96-xhdpi.png"/>
+        <icon density="xxhdpi" src="res/icons/icon-144-xxhdpi.png"/>
+        <icon density="xxxhdpi" src="res/icons/icon-192-xxxhdpi.png"/>
         
     
     </platform>

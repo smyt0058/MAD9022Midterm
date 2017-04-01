@@ -55,20 +55,12 @@ window.addEventListener('push', function (ev) {
 
 function onDeviceReady(){
     
-    
-    
-    
-    
-//    localStorage.clear();
-//    localStorage.setItem("giftr-smyt0058", JSON.stringify(people));
-    if (!localStorage.getItem("giftr-smyt0058")) { //if smyt0058 is not there
+    if (!localStorage.getItem("giftr-smyt0058")) {
         console.log("No contact data: setting key");
         
         localStorage.setItem("giftr-smyt0058", JSON.stringify(tempPeople));
         
     }
-//    showContacts();
-    console.log("I'm ready!");
     
     document.getElementById("addPersonBtn").addEventListener("touchstart", addPersonSetup);
     document.getElementById("cancelBtn").addEventListener("touchstart", cancelContactSetup);
@@ -94,7 +86,6 @@ function saveContact(){
     
     //add newContact to the array
     tempPeople.push(newContact);
-    console.log(tempPeople);
     
     //set array back into LS
     localStorage.setItem("giftr-smyt0058", JSON.stringify(tempPeople));
@@ -124,9 +115,6 @@ function editContact(ev){
     
     let dobElement = anchor.parentElement.lastElementChild;
     let dob = anchor.id;
-    console.log(currentContact);
-    console.log(name);
-    console.log(dob);
     
     //sets values to empty
     document.getElementById("name").value = "";
@@ -140,7 +128,6 @@ function editContact(ev){
 }
 
 function saveEdit(ev){
-    console.log(currentContact);
     // get the lisitem that was just clicked
         
         //grab contacts from Ls
@@ -251,7 +238,6 @@ function deleteContact(ev){
     let target = ev.currentTarget.parentElement;
     let ul = document.getElementById("contact-list");
     currentContact = target.id;
-    console.log(currentContact);
     //grab contacts from Ls
         let tempPeople = JSON.parse(localStorage.getItem("giftr-smyt0058"));
         
@@ -264,7 +250,6 @@ function deleteContact(ev){
                 break;
             }
         }
-        console.log(index);
         
     //if we found it remove it from the contacts list
     tempPeople.splice(index, 1);
@@ -274,17 +259,14 @@ function deleteContact(ev){
     ul.removeChild(target);
 }
 
-//populate gifts page
 function contactIdGrab(ev){
     let target = ev.currentTarget.parentElement;
-    console.log(target);
     currentContact = target.getAttribute("contact-id");
     
 }
 
+//populate gift page
 function showIdeas(){
-    console.log("showing ideas!");
-    console.log(currentContact);
     
     tempPeople = JSON.parse(localStorage.getItem("giftr-smyt0058"));
     
@@ -298,33 +280,31 @@ function showIdeas(){
             value1.ideas.forEach(function (value2, index2){
               
                 let li = document.createElement("li");
-//                    li.classList += "table-view-cell";
-//                    li.classList += " media";
-                    li.className = "table-view-cell media";
+                    li.classList.add("table-view-cell");
+                    li.classList.add("media");
                     ul.appendChild(li);
-                let span = document.createElement("span");
-//                    span.classList += "pull-right";
-//                    span.classList += " icon";
-//                    span.classList += " icon-trash";
-//                    span.classList += " midline";
-                    span.className = "pull-right icon icon-thrash midline";
-                    span.addEventListener("touchstart", deleteIdea);
-                    li.appendChild(span);
+                
                 let div = document.createElement("div");
                     div.className = "media-body";
                     div.setAttribute("gift-id", value2.id);
+                let span = document.createElement("span");
+                    span.classList.add("pull-right");
+                    span.classList.add("icon");
+                    span.classList.add("icon-trash");
+                    span.classList.add("midline");
+                    span.addEventListener("touchstart", function(){
+                        currentIdea = div.getAttribute("gift-id");
+                        deleteIdea(currentIdea);
+                    });
+                    li.appendChild(span);
                 let a = document.createElement("a");
                     a.textContent = value2.idea;
                     a.id = "ideaName";
                     a.addEventListener("touchstart", function(ev){
                         currentIdea = div.getAttribute("gift-id");
-                        console.log(currentIdea);
                         editIdea(currentIdea);
                     });
                     div.appendChild(a);
-                    li.addEventListener("touchstart", function(){
-                        currentIdea = div.getAttribute("gift-id");
-                    })
                     li.appendChild(div);
                 
                 if (value2.where != ""){
@@ -353,32 +333,9 @@ function showIdeas(){
             });
         }
     });
-    
-//    let deleteButtons = document.querySelectorAll(".icon-trash");
-//    deleteButtons.forEach(function (value){
-//        value.addEventListener("click", deleteIdea);
-//    })
 }
 
 function saveIdea(){
-//                  <form class="input-group">
-//                        <div class="input-row">
-//                            <label>Gift idea</label>
-//                            <input type="text" id="idea" placeholder="idea"/>
-//                        </div>
-//                        <div class="input-row">
-//                            <label>Store</label>
-//                            <input type="text" id="where" placeholder="where to find it"/>
-//                        </div>
-//                        <div class="input-row">
-//                            <label>URL</label>
-//                            <input type="url" id="url" placeholder="http://www.example.com/"/>
-//                        </div>
-//                        <div class="input-row">
-//                            <label>Cost</label>
-//                            <input type="text" id="cost" placeholder="$14.99"/>
-//                        </div>
-//                    </form>
     
     let newIdea = {
             id: Date.now(),
@@ -388,7 +345,6 @@ function saveIdea(){
             url: document.getElementById("url").value
         };
     tempPeople = JSON.parse(localStorage.getItem("giftr-smyt0058"));
-    console.log(currentContact);
     tempPeople.forEach(function(value){
             if(value.id == currentContact){
                 value.ideas.push(newIdea);
@@ -396,7 +352,6 @@ function saveIdea(){
                 console.log("no matching ids!")
             }
         });
-    console.log(tempPeople);
     
     localStorage.setItem("giftr-smyt0058", JSON.stringify(tempPeople));
     
@@ -405,12 +360,11 @@ function saveIdea(){
     
 }
 
-function deleteIdea(){
-    console.log("deleting!");
+function deleteIdea(current){
     tempPeople = JSON.parse(localStorage.getItem("giftr-smyt0058"));
     tempPeople.forEach(function (contact){
         contact.ideas.forEach(function (idea, index){
-            if(currentIdea == idea.id){
+            if(current == idea.id){
                 contact.ideas.splice(index, 1);
                 localStorage.setItem("giftr-smyt0058", JSON.stringify(tempPeople));
                 showIdeas();
@@ -459,12 +413,13 @@ function saveEditedIdea(){
     toggleIdeaModal();
 }
 
-//closes the modal
+//closes the contact modal
 function toggleContactModal(){
     let modal = document.querySelector("#personModal");
     modal.classList.toggle("active");
 }
 
+//closes idea modal
 function toggleIdeaModal(){
     let modal = document.querySelector("#giftModal")
     modal.classList.toggle("active");
@@ -477,6 +432,7 @@ function compare(a,b){
     return 0;
 }
 
+//sets up the add idea modal
 function addIdeaSetup(){
     currentIdea = 0;
     document.getElementById("modalTitle").textContent = "Add Idea";
@@ -490,6 +446,7 @@ function addIdeaSetup(){
     
 }
 
+//sets up the add person modal
 function addPersonSetup(){
     document.getElementById("name").value = "";
     document.getElementById("dob").value = "";
@@ -499,12 +456,14 @@ function addPersonSetup(){
     saveContactBtn.addEventListener("touchstart", saveContact);
 }
 
+//sets up the cancel contact button
 function cancelContactSetup(){
     document.getElementById("name").value = "";
     document.getElementById("dob").value = "";
     toggleContactModal();
 }
 
+//sets up the caned idea button
 function cancelIdeaSetup(){
     
         document.getElementById("idea").textContent = "";
